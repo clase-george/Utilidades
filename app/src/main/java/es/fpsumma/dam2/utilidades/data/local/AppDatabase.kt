@@ -15,7 +15,7 @@ abstract class AppDatabase : RoomDatabase() {
 
     // Room necesita que le digamos qué DAO vamos a usar para acceder a la BD
     // (el DAO contiene métodos como insertar, borrar, consultar, etc.)
-    abstract fun tareaDao(): TareaDao
+    abstract fun AsignaturaDao() : AsignaturaDao
 
     companion object {
         // Guardamos aquí la única instancia de la BD (para no crear 20 bases de datos)

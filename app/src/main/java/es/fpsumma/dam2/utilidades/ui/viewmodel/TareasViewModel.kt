@@ -15,7 +15,9 @@ class TareasViewModel(app: Application) : AndroidViewModel(app) {
 
     // 1) Abrimos/creamos la base de datos donde se guardan las tareas (archivo "tareas.db")
     private val db = Room.databaseBuilder(
-        app, AppDatabase::class.java, "tareas.db"
+        app,
+        AppDatabase::class.java,
+        "tareas.db"
     ).fallbackToDestructiveMigration(false).build()
 
     // 2) El DAO es quien hace las operaciones con la base de datos (guardar, borrar, leer...)

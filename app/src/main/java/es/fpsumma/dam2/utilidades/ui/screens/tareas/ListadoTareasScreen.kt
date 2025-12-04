@@ -3,6 +3,7 @@ package es.fpsumma.dam2.utilidades.ui.screens.tareas
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +19,7 @@ import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -45,7 +47,6 @@ import es.fpsumma.dam2.utilidades.ui.viewmodel.TareasViewModel
 fun ListadoTareasScreen(navController: NavController, vm: TareasViewModel, modifier: Modifier= Modifier) {
 
     val tareas by vm.tareas.collectAsState()
-
     var titulo by rememberSaveable { mutableStateOf("") }
     var descripcion by rememberSaveable { mutableStateOf("") }
 
@@ -85,6 +86,23 @@ fun ListadoTareasScreen(navController: NavController, vm: TareasViewModel, modif
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(Modifier.height(8.dp))
+            Row {
+                FilterChip(
+                    selected = false,
+                    onClick = { /* Acción al seleccionar el chip */ },
+                    label = { Text("Prioridad Baja") }
+                )
+                FilterChip(
+                    selected = false,
+                    onClick = { /* Acción al seleccionar el chip */ },
+                    label = { Text("Prioridad Media") }
+                )
+                FilterChip(
+                    selected = false,
+                    onClick = { /* Acción al seleccionar el chip */ },
+                    label = { Text("Prioridad Alta") }
+                )
+            }
             OutlinedTextField(
                 value = descripcion,
                 onValueChange = { descripcion = it },

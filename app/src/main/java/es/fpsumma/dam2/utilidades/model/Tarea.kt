@@ -23,6 +23,7 @@ data class Tarea(
     @ColumnInfo(name = "descripcion")
     val descripcion: String,
 
+
     @ColumnInfo(name = "prioridad", defaultValue = "1")
     val prioridad: Int = 1,
 

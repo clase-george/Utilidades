@@ -13,6 +13,6 @@ fun AppNavHost(navController: NavHostController, tareasViewModel: TareasViewMode
     NavHost(navController = navController, startDestination = Routes.HOME) {
         composable(Routes.HOME) { HomeScreen(navController)}
         composable(Routes.LISTADO_TAREAS) { ListadoTareasScreen(navController,tareasViewModel) }
-
+        composable {  }
     }
 }
