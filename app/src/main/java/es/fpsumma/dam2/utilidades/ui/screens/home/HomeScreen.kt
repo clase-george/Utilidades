@@ -2,6 +2,7 @@ package es.fpsumma.dam2.utilidades.ui.screens.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -31,11 +32,21 @@ fun HomeScreen(navController: NavController) {
         Column(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Button(
-                onClick = { navController.navigate(Routes.LISTADO_TAREAS) },
+            Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text("Listado de tareas")
+                Button(
+                    onClick = { navController.navigate(Routes.LISTADO_TAREAS) },
+
+                ) {
+                    Text(" de tareas")
+                }
+                Button(
+                    onClick = { navController.navigate(Routes.NOTAS_ASIGNATURAS) },
+
+                ) {
+                    Text("Notas de asignaturas")
+                }
             }
 
         }
