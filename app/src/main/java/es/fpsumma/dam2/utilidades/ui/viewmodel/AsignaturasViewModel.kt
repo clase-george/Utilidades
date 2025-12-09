@@ -33,7 +33,7 @@ class AsignaturasViewModel(app: Application) : AndroidViewModel(app) {
         alumno: String,
         asignatura: String,
         trimestre: String,
-        nota: Float
+        nota: Double
     ) = viewModelScope.launch {
         dao.insertAsignatura(
             Asignatura(

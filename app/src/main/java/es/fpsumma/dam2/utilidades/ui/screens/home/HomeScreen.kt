@@ -35,12 +35,13 @@ fun HomeScreen(navController: NavController) {
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Button(
+                /*
+                 Button(
                     onClick = { navController.navigate(Routes.LISTADO_TAREAS) },
 
                 ) {
-                    Text(" de tareas")
-                }
+                    Text("Creacion de tareas")
+                }*/
                 Button(
                     onClick = { navController.navigate(Routes.NOTAS_ASIGNATURAS) },
 

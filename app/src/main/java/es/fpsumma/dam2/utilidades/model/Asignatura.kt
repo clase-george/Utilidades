@@ -19,4 +19,4 @@ data class Asignatura(
      val trimestre: String? = null,
 
     @ColumnInfo(name = "nota")
-     val nota: Float? = null)
+     val nota: Double? = null)

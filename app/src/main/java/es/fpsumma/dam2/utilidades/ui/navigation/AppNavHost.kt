@@ -17,7 +17,7 @@ fun AppNavHost(
     tareasViewModel: TareasViewModel,
     asignaturasViewModel: AsignaturasViewModel
 ) {
-    NavHost(navController = navController, startDestination = Routes.HOME) {
+    NavHost(navController = navController, startDestination = Routes.NOTAS_ASIGNATURAS) {
         composable(Routes.HOME) {
             HomeScreen(
                 navController
