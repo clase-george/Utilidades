@@ -7,6 +7,7 @@ import androidx.room.Room
 import es.fpsumma.dam2.utilidades.data.local.AppDatabase
 import es.fpsumma.dam2.utilidades.model.Asignatura
 import es.fpsumma.dam2.utilidades.model.Tarea
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
@@ -29,6 +30,19 @@ class AsignaturasViewModel(app: Application) : AndroidViewModel(app) {
             emptyList()                  // valor inicial (al principio no hay nada)
         )
 
+    fun clearInputs(
+        alumno: String,
+        asignatura: String,
+        trimestre: String,
+        nota: Double
+    ) = viewModelScope.launch {
+        Asignatura(
+            alumno = "",
+            asignatura = "",
+            trimestre = "",
+            nota = 0.0
+        )
+    }
     fun addAsignatura(
         alumno: String,
         asignatura: String,
@@ -52,6 +66,12 @@ class AsignaturasViewModel(app: Application) : AndroidViewModel(app) {
     fun updateAsignatura(asignatura: Asignatura) = viewModelScope.launch {
         dao.updateAsignatura(asignatura)
     }
+    fun getAsignaturaById(id: Int): Flow<Asignatura?> {
+        return dao.getAsignaturaById(id)
+    }
+
+
+
 
 
 }

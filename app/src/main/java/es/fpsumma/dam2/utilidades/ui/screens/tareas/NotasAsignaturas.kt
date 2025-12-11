@@ -13,9 +13,12 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.HorizontalDivider
@@ -33,7 +36,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import es.fpsumma.dam2.utilidades.ui.navigation.Routes
 import es.fpsumma.dam2.utilidades.ui.viewmodel.AsignaturasViewModel
@@ -136,13 +142,70 @@ fun NotasAsignaturas(
                 LazyColumn {
                     items(asignaturas, key={it.id}){ asignatura ->
                         Card (
-                            modifier = modifier.fillMaxWidth()
+                            modifier = modifier.fillMaxWidth().padding(6.dp),
+                                    colors = CardDefaults.cardColors(
+                                    containerColor =
+                                        if ((asignatura.nota?:0.0) >=5.0 ){
+                                            Color(0xFFD0F0C0) // Verde claro para notas aprobadas
+                                        }else{
+                                            Color(0xFFFFC0C0) // Rojo claro para notas no aprobadas
+                                        }
+                                    )
                         ){
-                            Column {
-                                Text("${asignatura.asignatura}")
-                                Text("${asignatura.alumno}")
-                                Text("${asignatura.trimestre}")
-                                Text("Nota: ${asignatura.nota}")
+                            Column(
+                                modifier=modifier.padding(6.dp)
+                            ){
+                                Text("${asignatura.alumno}",
+                                    fontSize = 24.sp,
+                                    fontWeight = FontWeight.Bold)
+                                HorizontalDivider(modifier.padding(vertical = 4.dp))
+                                Row {
+                                    Text("Asignatura: ",
+                                        fontWeight = FontWeight.Bold)
+                                    Text("${asignatura.asignatura}")
+                                }
+                                Row {
+                                    Text("Trimestre: ",
+                                        fontWeight = FontWeight.Bold)
+                                    Text("${asignatura.trimestre}")
+                                }
+                                Row {
+                                    Row {
+                                        Text("Nota: ",
+                                            fontWeight = FontWeight.Bold)
+                                        Text("Nota: ${asignatura.nota}")
+                                    }
+                                    Row (
+                                        modifier = modifier.fillMaxWidth(),
+                                        horizontalArrangement = Arrangement.End
+                                    ){
+                                        IconButton(
+                                            onClick = {
+                                                navController.navigate(Routes.EDITAR_ASIGNATURAS + "/${asignatura.id}")
+                                            }
+                                        ) {
+                                            Icon(
+                                                imageVector = Icons.Default.Edit,
+                                                contentDescription = "Editar gasto",
+                                                tint = Color.Blue,
+                                            )
+                                        }
+                                        IconButton(
+
+                                            onClick = {
+                                                vm.deleteAsignatura(asignatura)
+                                            }
+                                        ) {
+                                            Icon(
+                                                imageVector = Icons.Default.Delete,
+                                                contentDescription = "Eliminar gasto",
+                                                tint = Color.Red,
+                                            )
+                                        }
+                                    }
+
+                                }
+
                             }
                         }
                     }

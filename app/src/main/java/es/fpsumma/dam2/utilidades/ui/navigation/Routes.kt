@@ -6,4 +6,6 @@ object Routes {
 
     const val NOTAS_ASIGNATURAS = "notas_asignaturas"
 
+    const val EDITAR_ASIGNATURAS = "editar_asignaturas"
+
 }

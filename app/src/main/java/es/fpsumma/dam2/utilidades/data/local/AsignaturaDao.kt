@@ -25,4 +25,5 @@ interface AsignaturaDao {
 
     @Query("SELECT * FROM asignaturas WHERE id = :id")
     fun getAsignaturaById(id: Int): Flow<Asignatura>
+
 }
